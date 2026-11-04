@@ -1,0 +1,10 @@
+{
+  "image_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+  "vulnerabilities": [
+    {"vuln": "CVE-2099-0001", "severity": "Critical", "package_name": "sample-openssl", "package_version": "1.0.0", "package_type": "dpkg", "fix": "1.0.1", "url": "https://vulnerabilities.example.com/CVE-2099-0001"},
+    {"vuln": "CVE-2099-0002", "severity": "High", "package_name": "sample-json-lib", "package_version": "2.3.0", "package_type": "java", "fix": "2.3.5", "url": "https://vulnerabilities.example.com/CVE-2099-0002"},
+    {"vuln": "CVE-2099-0003", "severity": "High", "package_name": "sample-zlib", "package_version": "1.2.0", "package_type": "dpkg", "fix": "None", "url": "https://vulnerabilities.example.com/CVE-2099-0003"},
+    {"vuln": "CVE-2099-0004", "severity": "Medium", "package_name": "sample-http-client", "package_version": "4.1.0", "package_type": "java", "fix": "4.1.2", "url": "https://vulnerabilities.example.com/CVE-2099-0004"},
+    {"vuln": "CVE-2099-0005", "severity": "Low", "package_name": "sample-curl", "package_version": "7.0.0", "package_type": "dpkg", "fix": "None", "url": "https://vulnerabilities.example.com/CVE-2099-0005"}
+  ]
+}

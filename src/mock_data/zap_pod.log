@@ -1,0 +1,17 @@
+Sample ZAP baseline scan output for mock mode
+Total of 12 URLs
+PASS: Vulnerable JS Library [10003]
+PASS: Cross-Domain Misconfiguration [10098]
+PASS: Private IP Disclosure [2]
+WARN-NEW: Cookie No HttpOnly Flag [10010] x 3
+	https://payments-sample.example.com/login (200 OK)
+	https://payments-sample.example.com/account (200 OK)
+	https://payments-sample.example.com/checkout (200 OK)
+WARN-NEW: Missing Anti-clickjacking Header [10020] x 2
+	https://payments-sample.example.com/ (200 OK)
+	https://payments-sample.example.com/login (200 OK)
+WARN-NEW: Strict-Transport-Security Header Not Set [10035] x 1
+	https://payments-sample.example.com/ (200 OK)
+INFO: Information Disclosure - Suspicious Comments [10027] x 1
+	https://payments-sample.example.com/static/app.js (200 OK)
+FAIL-NEW: 0	FAIL-INPROG: 0	WARN-NEW: 3	WARN-INPROG: 0	INFO: 1	IGNORE: 0	PASS: 3

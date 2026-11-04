@@ -1,0 +1,10 @@
+{
+  "projectStatus": {
+    "status": "OK",
+    "conditions": [
+      {"status": "OK", "metricKey": "new_coverage", "comparator": "LT", "errorThreshold": "80", "actualValue": "86.4"},
+      {"status": "OK", "metricKey": "new_duplicated_lines_density", "comparator": "GT", "errorThreshold": "3", "actualValue": "1.2"},
+      {"status": "OK", "metricKey": "new_security_rating", "comparator": "GT", "errorThreshold": "1", "actualValue": "1"}
+    ]
+  }
+}

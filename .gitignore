@@ -1,0 +1,10 @@
+# Secrets and local configuration
+*.env
+.env.*
+!.env.example
+
+# Generated reports, which can contain vulnerability details
+output/
+
+# Python cache
+__pycache__/

@@ -1,0 +1,7 @@
+{
+  "kind": "PodList",
+  "items": [
+    {"metadata": {"name": "zap-payments-api-sample-older", "creationTimestamp": "2026-11-03T09:00:00Z"}},
+    {"metadata": {"name": "zap-payments-api-sample-newest", "creationTimestamp": "2026-11-04T09:00:00Z"}}
+  ]
+}

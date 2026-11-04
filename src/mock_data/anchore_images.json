@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "image_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+      "image_detail": [
+        {"fulltag": "registry.example.com/sample/payments-api-sample:0.0.0-mock"}
+      ]
+    }
+  ]
+}
