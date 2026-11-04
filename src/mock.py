@@ -24,6 +24,7 @@ ROUTES = [
     (r"/images$", "anchore_images.json"),
     (r"/images/[^/]+/vuln/all$", "anchore_vulns.json"),
     (r"/images/[^/]+/check$", "anchore_check.json"),
+    (r"/query/vulnerabilities$", "anchore_definitions.json"),
     (r"/pods$", "ocp_pods.json"),
     (r"/pods/[^/]+/log$", "zap_pod.log"),
 ]
@@ -69,6 +70,7 @@ def apply(a):
     a.anchore_password = "mock"
     a.anchore_image = "registry.example.com/sample/payments-api-sample:0.0.0-mock"
     a.anchore_digest = None
+    a.anchore_justifications = os.path.join(DATA_DIR, "anchore_justifications.csv")
     a.ocp_api = "https://api.cluster.mock.example.com:6443"
     a.ocp_token = "mock"
     a.ocp_namespace = "security-scans"

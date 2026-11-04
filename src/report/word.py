@@ -112,6 +112,16 @@ def write(a, results, outdir):
             cols = [c for c in r.findings[0].keys() if c not in ("url", "key", "sample_urls")][:6]
             doc.add_paragraph(f"Top {min(len(r.findings), MAX_ROWS_IN_DOC)} of {len(r.findings)} findings:")
             _grid(doc, r.findings[:MAX_ROWS_IN_DOC], cols)
+        if r.explanations:
+            doc.add_heading("Known CVEs with justification", 2)
+            for e in r.explanations:
+                doc.add_paragraph().add_run(f"{e['cve']} ({e['severity']}): {', '.join(e['packages'])}").bold = True
+                p = doc.add_paragraph()
+                p.add_run("Definition (from Anchore): ").bold = True
+                p.add_run(e["definition"])
+                p = doc.add_paragraph()
+                p.add_run("Why it does not affect this release: ").bold = True
+                p.add_run(e["justification"])
 
     n = len(results) + 5
     doc.add_heading(f"{n}. Risk and mitigation", 1)

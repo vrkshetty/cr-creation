@@ -1,0 +1,5 @@
+cve,justification
+CVE-2099-0001,"Sample justification: TLS terminates at the load balancer, so the service never runs the affected renegotiation handler."
+CVE-2099-0003,"Sample justification: the service only decompresses files it creates itself, so it never processes untrusted streams."
+CVE-2099-0004,"Sample justification: the affected proxy feature of sample-http-client is not enabled in this service."
+CVE-2099-0099,"Sample justification: this CVE is not in the sample image, so it does not appear in the draft."

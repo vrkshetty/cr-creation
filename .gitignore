@@ -8,3 +8,6 @@ output/
 
 # Python cache
 __pycache__/
+
+# macOS folder settings
+.DS_Store

@@ -70,6 +70,22 @@ Prefer env vars for secrets in CI: flags can appear in process lists and job log
 - `OCP_POD` picks an exact pod; otherwise `OCP_LABEL_SELECTOR` picks the newest matching pod. The OCP token needs `get/list` on `pods` and `pods/log` in that namespace
 - `LOG_LEVEL=DEBUG` / `INFO` / `WARNING` / `ERROR` (default `INFO`)
 
+### Justifying known CVEs
+
+List CVEs that don't affect your release in a CSV file with these columns:
+
+```csv
+cve,justification
+CVE-2024-12345,"TLS terminates at the load balancer, so the service never runs the affected code."
+```
+
+For each listed CVE found in the image, the Word draft adds a "Known CVEs with justification" section with Anchore's definition and your justification, and `anchore.csv/.pdf` gain `definition` and `justification` columns. PDF cells are shortened after 600 characters; the CSV and Word draft keep the full text.
+
+- **Using the file:** `make run` picks up `anchore_justifications.csv` from the project root if it exists. Use `make run JUSTIFICATIONS=path/to/file.csv` for another location, or `ANCHORE_JUSTIFICATIONS` / `--anchore-justifications` without `make`.
+- **Definitions:** these come from the description in Anchore's vulnerability results, or otherwise from `/query/vulnerabilities`. If neither has one, the draft says "Not available from Anchore".
+- **Status and risk don't change:** a justified CVE still counts towards the Anchore status and risk rating.
+- **Problems with the file:** if it can't be read or has the wrong columns, the check still runs and the draft notes that the file wasn't used.
+
 ## Run without Docker
 
 ```bash
@@ -89,7 +105,7 @@ python src/main.py --mock    # without Docker
 Mock mode (`--mock` or `MOCK_MODE=true`) answers SonarQube, Anchore and OpenShift requests from the sample files in `src/mock_data/`, so the real parsing and report code runs without any servers. The sample data gives SonarQube PASS, Anchore FAIL and ZAP WARN, so the overall risk is High.
 
 - Reports go to a `mock/` folder inside the output directory, so they stay apart from real ones.
-- Real URLs, credentials and CR details in your environment are ignored and replaced with sample values.
+- Real URLs, credentials, CR details and your justifications file are ignored and replaced with sample values.
 - The Word draft is labelled as mock data. It uses invented findings, so never submit it.
 
 To try other results, edit the files in `src/mock_data/`. For example, set `"status": "ERROR"` in `sonar_quality_gate.json` to make SonarQube FAIL.

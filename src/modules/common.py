@@ -20,6 +20,7 @@ class Result:
     findings: list = field(default_factory=list)   # list of dicts (rows)
     files: list = field(default_factory=list)      # generated report paths
     notes: str = ""
+    explanations: list = field(default_factory=list)   # known CVEs: cve, severity, packages, definition, justification
 
 
 def session(verify=True, auth=None, token=None, timeout=60):
@@ -82,7 +83,7 @@ def write_pdf(path, title, summary, rows, columns, max_rows=500):
     if rows:
         shown = rows[:max_rows]
         data = [[Paragraph(f"<b>{c}</b>", cell) for c in columns]]
-        data += [[Paragraph(_esc(r.get(c, "")), cell) for c in columns] for r in shown]
+        data += [[Paragraph(_esc(_clip(r.get(c, ""))), cell) for c in columns] for r in shown]
         width = (landscape(A4)[0] - 48) / len(columns)
         t = Table(data, colWidths=[width] * len(columns), repeatRows=1)
         t.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.3, colors.grey),
@@ -105,6 +106,12 @@ def export(outdir, name, title, summary, rows, columns, formats):
         files.append(write_pdf(os.path.join(outdir, f"{name}.pdf"), title, summary, rows, columns))
     log.debug("Exported %d rows to %s", len(rows), ", ".join(files) or "no files")
     return files
+
+
+def _clip(v, limit=600):
+    """A table row can't span PDF pages, so very long text would otherwise fail the PDF build."""
+    v = str(v)
+    return v if len(v) <= limit else v[:limit] + "... [shortened: full text in the CSV and Word draft]"
 
 
 def _esc(v):
