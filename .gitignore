@@ -6,8 +6,9 @@
 # Generated reports, which can contain vulnerability details
 output/
 
-# Python cache
+# Python cache and virtual environment
 __pycache__/
+.venv/
 
 # macOS folder settings
 .DS_Store
